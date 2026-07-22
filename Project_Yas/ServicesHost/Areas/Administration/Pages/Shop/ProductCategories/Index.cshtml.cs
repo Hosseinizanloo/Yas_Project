@@ -30,7 +30,7 @@ namespace ServicesHost.Areas.Administration.Pages.Shop.ProductCategories
         public IActionResult OnGetEdit(long id)
         {
             var productcategory = _productCategoryApplication.GetDetilse(id);
-            return Partial("./Edit", productcategory);
+            return Partial("./EditProduct", productcategory);
         }
 
         public JsonResult OnPostEdit(EditProductCategory command)
