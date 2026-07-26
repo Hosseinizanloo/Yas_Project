@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Domain;
+using ShopManagement.Domain.ProductAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,11 @@ namespace ShopManagement.Domain.ProductCategoryAgg
             Slug = slug;
         }
 
+        public ProductCategory()
+        {
+            Products = new List<Product>();
+        }
+
         public string Name { get; private set; }
         public string Description { get; private set; }
         //ما چون مسیر عکس و داخل دیتا بیس ذخیره میکنیم نه خود عکسو
@@ -41,6 +47,7 @@ namespace ShopManagement.Domain.ProductCategoryAgg
         public string MetaDescription { get; private set; }
         public string Keywords { get; private set; }
         public string Slug { get; private set; }
+        public List<Product> Products { get; private set; }
 
     }
 }

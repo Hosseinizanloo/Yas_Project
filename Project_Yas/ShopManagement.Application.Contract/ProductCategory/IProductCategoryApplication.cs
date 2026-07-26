@@ -15,5 +15,8 @@ namespace ShopManagement.Application.Contract.ProductCategory
         OperatioResult Edit(EditProductCategory command);
         List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel);
         EditProductCategory GetDetilse(long id);
+
+        //برای نمایش سلکت لیست است 
+        List<ProductCategoryViewModel> GetProductCategories();
     }
 }

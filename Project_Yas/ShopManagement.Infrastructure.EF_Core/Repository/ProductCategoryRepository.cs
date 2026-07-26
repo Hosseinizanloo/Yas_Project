@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ShopManagement.Infrastructure.EF_Core.Repository
 {
-    public class ProductCategoryRepository : RepositoryBase<long , ProductCategory> , IProductCategoryRepository
+    public class ProductCategoryRepository : RepositoryBase<long, ProductCategory>, IProductCategoryRepository
     {
         private readonly ShopContext _context;
 
@@ -34,6 +34,15 @@ namespace ShopManagement.Infrastructure.EF_Core.Repository
                 PictureTitle = x.PictureTitle
 
             }).FirstOrDefault(x => x.Id == id);
+        }
+
+        public List<ProductCategoryViewModel> GetProductCategories()
+        {
+            return _context.ProductCategories.Select(x=> new ProductCategoryViewModel 
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
         }
 
         public List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel)

@@ -16,5 +16,8 @@ namespace ShopManagement.Domain.ProductCategoryAgg
         EditProductCategory GetDetailse(long id);// بر اساس ایدی این اطلاعات را برای من بگیر از دیتابیس که من نمایش بدهم در قسمت ادیت
         List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel);// برای من سرچ کن بر اساس نام و ان را به صورت یک لیست نمایش بده 
 
+
+        //برای نمایش گروه محصولی میباشد در ماژول محصولات یا دیگر گزینه ها 
+        List<ProductCategoryViewModel> GetProductCategories();
     }
 }
