@@ -15,6 +15,8 @@
     </div>
 </div>
 
+
+
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
@@ -87,9 +89,19 @@
                                         <td>@item.CreationDate.ToString()</td>
                                         <td>
                                             @* حتما باید ایدی را در این قسمت که میخواهیم ادیت کنیم باید پاس دهیم *@
-                                            <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Page("./Index", "EditProduct" , new {id = item.Id})">
+                                            <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Page("./Index", "Edit" , new {id = item.Id})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
+                                            @if (item.IsInStock == true)
+                                            {@* *@
+                                                <a class="btn btn-danger" asp-page="" asp-page-handler="NotInStock" asp-route-id="">اتمام موجودی</a>
+                                            }
+                                            else
+                                            {
+                                                <a class="btn btn-danger" asp-page="" asp-page-handler="InStock" asp-route-id="">افزایش موجودی</a>
+
+                                            }
+
                                         </td>
                                     </tr>
                                 }

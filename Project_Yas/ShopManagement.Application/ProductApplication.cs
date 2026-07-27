@@ -82,4 +82,5 @@ namespace ShopManagement.Application
             return _repository.Search(searchModel);
         }
     }
+
 }

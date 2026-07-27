@@ -21,11 +21,15 @@ namespace ServicesHost.Areas.Administration.Pages.Shop.Products
         public void OnGet(ProductSearchModel searchModel)
         {
             ProductCategories = new SelectList(_categoryApplication.GetProductCategories(),"Id" , "Name");
-           Products = _productApplication.Search(searchModel);
+            Products = _productApplication.Search(searchModel);
         }
         public IActionResult OnGetCreate()
         {
-            return Partial("./Create", new CreateProduct());
+            var command = new CreateProduct
+            {
+                Categories = _categoryApplication.GetProductCategories()
+            };
+            return Partial("./Create", command);
         }
         //چون من داخل لایه اپلیکیشن از متد اوپریشن ریزالت استفاده کردم باید اینجا نوع متد را جیسون قرار دهم که بتواند آن را برگردنداند
         public JsonResult OnPostCreate(CreateProduct command)
@@ -36,7 +40,8 @@ namespace ServicesHost.Areas.Administration.Pages.Shop.Products
         public IActionResult OnGetEdit(long id)
         {
             var productcategory = _productApplication.GetDetailse(id);
-            return Partial("./EditProduct", productcategory);
+            productcategory.Categories = _categoryApplication.GetProductCategories();
+            return Partial("./Edit", productcategory);
         }
 
         public JsonResult OnPostEdit(EditProduct command)

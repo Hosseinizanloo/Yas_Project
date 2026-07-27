@@ -50,6 +50,7 @@ namespace ShopManagement.Infrastructure.EF_Core.Repository
                 Code = x.Code,
                 Picture = x.Picture,
                 UnitPrice = x.UnitPrice,
+                IsInStock = x.IsInStock
                 CreationDate = x.CreationDate.ToString()
                 });
 
