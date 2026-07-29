@@ -86,20 +86,29 @@
                                         <td>@item.Code</td>
                                         <td>@item.Category</td>
                                         <td>@item.UnitPrice</td>
+                                        <td style="text-align:center;">
+                                            @if (item.IsInStock)
+                                            {
+                                                <i class="fa fa-check fa-2x text-success"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-remove fa-2x text-danger"></i>
+                                            }
+                                        </td>
                                         <td>@item.CreationDate.ToString()</td>
                                         <td>
                                             @* حتما باید ایدی را در این قسمت که میخواهیم ادیت کنیم باید پاس دهیم *@
                                             <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Page("./Index", "Edit" , new {id = item.Id})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
-                                            @if (item.IsInStock == true)
-                                            {@* *@
-                                                <a class="btn btn-danger" asp-page="" asp-page-handler="NotInStock" asp-route-id="">اتمام موجودی</a>
+                                            @if (item.IsInStock == true)@*یعنی الان محصول موجوده *@
+                                            {@* پس دکمه ای به من نشون بده که بشه موجودی را تموم کرد  *@
+                                                <a class="btn btn-danger btn-custom waves-effect waves-light m-b-5" asp-page="./Index" asp-page-handler="NotInStock" asp-route-id="@item.Id">اتمام موجودی</a>
                                             }
-                                            else
-                                            {
-                                                <a class="btn btn-danger" asp-page="" asp-page-handler="InStock" asp-route-id="">افزایش موجودی</a>
-
+                                            else@*یعنی محصول الان موجود نیست *@
+                                            {@*پس به من دکمه ای نشون بده که بشه موجودی را افزایش داد*@
+                                                <a class="btn btn-success btn-custom waves-effect waves-light m-b-5" asp-page="./Index" asp-page-handler="InStock" asp-route-id="@item.Id">افزایش موجودی</a>
                                             }
 
                                         </td>

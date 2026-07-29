@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Domain;
 using ShopManagement.Domain.ProductCategoryAgg;
+using ShopManagement.Domain.ProductPictureAgg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,5 +64,6 @@ namespace ShopManagement.Domain.ProductAgg
         public string MetaDescription { get; private set; }
         public long CategoryId { get; private set; } // گروه محصولی ، ایدی ان گروه
         public ProductCategory Category { get; private set; } // گروه محصول، نام آن گروه
+        public List<ProductPicture> ProductsPictures { get; private set; }
     }
 }

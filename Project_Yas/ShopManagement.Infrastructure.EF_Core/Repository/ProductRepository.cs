@@ -1,6 +1,7 @@
 ﻿using _0_Framework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using ShopManagement.Application.Contract.Product;
+using ShopManagement.Application.Contract.ProductPicture;
 using ShopManagement.Domain.ProductAgg;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,15 @@ namespace ShopManagement.Infrastructure.EF_Core.Repository
             }).FirstOrDefault(x => x.Id == id);
         }
 
+        public List<ProductViewModel> GetProduct()
+        {
+            return _context.Products.Select(x => new ProductViewModel
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+        }
+
         public List<ProductViewModel> Search(ProductSearchModel searchModel)
         {
             var query = _context.Products.Include(x=>x.Category).Select(x => new ProductViewModel 
@@ -50,7 +60,7 @@ namespace ShopManagement.Infrastructure.EF_Core.Repository
                 Code = x.Code,
                 Picture = x.Picture,
                 UnitPrice = x.UnitPrice,
-                IsInStock = x.IsInStock
+                IsInStock = x.IsInStock,
                 CreationDate = x.CreationDate.ToString()
                 });
 

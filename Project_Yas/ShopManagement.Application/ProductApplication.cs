@@ -56,6 +56,11 @@ namespace ShopManagement.Application
             return _repository.GetDetailse(id);
         }
 
+        public List<ProductViewModel> GetProduct()
+        {
+            return _repository.GetProduct();
+        }
+
         public OperatioResult IsNotStock(long id)
         {
             var operationResult = new OperatioResult();
@@ -63,7 +68,7 @@ namespace ShopManagement.Application
             if (product == null)
                 return operationResult.Failed(ApplicationMessages.RecordNotFuond);
 
-            product.InStock();
+            product.NotStock();
             return operationResult.Succedded();
         }
         public OperatioResult IsStock(long id)
@@ -73,7 +78,7 @@ namespace ShopManagement.Application
             if (product == null)
                 return operationResult.Failed(ApplicationMessages.RecordNotFuond);
 
-            product.NotStock();
+            product.InStock();
             return operationResult.Succedded();
         }
 

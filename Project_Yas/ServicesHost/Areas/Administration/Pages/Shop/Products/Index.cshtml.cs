@@ -3,11 +3,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ShopManagement.Application.Contract.Product;
 using ShopManagement.Application.Contract.ProductCategory;
+using System.Runtime.CompilerServices;
 
 namespace ServicesHost.Areas.Administration.Pages.Shop.Products
 {
     public class IndexModel : PageModel
     {
+        [TempData]
+        public string Message { get; set; }
         public ProductSearchModel SearchModel;
         public List<ProductViewModel> Products;
         public SelectList ProductCategories;
@@ -48,6 +51,22 @@ namespace ServicesHost.Areas.Administration.Pages.Shop.Products
         {
             var result = _productApplication.Edit(command);
             return new JsonResult(result);
+        }
+        public IActionResult OnGetNotInStock(long id)
+        {
+           var result = _productApplication.IsNotStock(id);
+            if (result.IsSuccedded)
+                return RedirectToPage("./Index");
+            Message = result.Message;
+            return RedirectToPage("./Index");
+        }
+        public IActionResult OnGetInStock(long id)
+        {
+         var result = _productApplication.IsStock(id);
+            if (result.IsSuccedded)
+                return RedirectToPage("./Index");
+            Message = result.Message;
+            return RedirectToPage("./Index");
         }
     }
 }
