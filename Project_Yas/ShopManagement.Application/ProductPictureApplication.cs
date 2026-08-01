@@ -2,14 +2,6 @@
 using _0_Framework.Application;
 using ShopManagement.Application.Contract.ProductPicture;
 using ShopManagement.Domain.ProductPictureAgg;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-
 namespace ShopManagement.Application
 {
     public class ProductPictureApplication : IProductPictureApplication
@@ -40,7 +32,7 @@ namespace ShopManagement.Application
             if (productPicture == null) 
                 return operation.Failed(ApplicationMessages.RecordNotFuond);
 
-            if (_repository.Exists(x => x.Picture == command.Picture && x.ProductId == command.ProductId))
+            if (_repository.Exists(x => x.Picture == command.Picture && x.ProductId != command.ProductId))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
 
             productPicture.Edit(command.ProductId, command.Picture, command.PictureAlt, command.PictureTitle);
