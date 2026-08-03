@@ -13,9 +13,9 @@ namespace ShopManagement.Application
             _repository = repository;
         }
 
-        public OperatioResult Create(CreateProductPicture command)
+        public OperationResult Create(CreateProductPicture command)
         {
-            var operation = new OperatioResult();
+            var operation = new OperationResult();
             if (_repository.Exists(x => x.Picture == command.Picture && x.ProductId == command.ProductId))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
             var productPicture = new ProductPicture(command.ProductId, 
@@ -25,9 +25,9 @@ namespace ShopManagement.Application
             return operation.Succedded();
         }
 
-        public OperatioResult Edit(EditProductPicture command)
+        public OperationResult Edit(EditProductPicture command)
         {
-            var operation = new OperatioResult();
+            var operation = new OperationResult();
             var productPicture = _repository.Get(command.Id);
             if (productPicture == null) 
                 return operation.Failed(ApplicationMessages.RecordNotFuond);
@@ -45,9 +45,9 @@ namespace ShopManagement.Application
             return _repository.GetDetailse(id);
         }
 
-        public OperatioResult Remove(long id)
+        public OperationResult Remove(long id)
         {
-            var operation = new OperatioResult();
+            var operation = new OperationResult();
             var productPicture = _repository.Get(id);
             if (productPicture == null)
                 return operation.Failed(ApplicationMessages.RecordNotFuond);
@@ -56,9 +56,9 @@ namespace ShopManagement.Application
             _repository.SaveChanges();
             return operation.Succedded();
         }
-        public OperatioResult Restore(long id)
+        public OperationResult Restore(long id)
         {
-            var operation = new OperatioResult();
+            var operation = new OperationResult();
             var productPicture = _repository.Get(id);
             if (productPicture == null)
                 return operation.Failed(ApplicationMessages.RecordNotFuond);

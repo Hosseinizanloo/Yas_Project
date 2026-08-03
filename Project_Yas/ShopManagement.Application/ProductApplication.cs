@@ -21,9 +21,9 @@ namespace ShopManagement.Application
             _repository = repository;
         }
 
-        public OperatioResult Create(CreateProduct command)
+        public OperationResult Create(CreateProduct command)
         {
-            var operationResult = new OperatioResult();
+            var operationResult = new OperationResult();
             if (_repository.Exists(x => x.Name == command.Name))
                 return operationResult.Failed(ApplicationMessages.DuplicatedRecord);
 
@@ -36,9 +36,9 @@ namespace ShopManagement.Application
 
         }
 
-        public OperatioResult Edit(EditProduct command)
+        public OperationResult Edit(EditProduct command)
         {
-            var operationResult = new OperatioResult();
+            var operationResult = new OperationResult();
             var product = _repository.Get(command.Id);
             if (product == null)
                 return operationResult.Failed(ApplicationMessages.RecordNotFuond);
@@ -61,9 +61,9 @@ namespace ShopManagement.Application
             return _repository.GetProduct();
         }
 
-        public OperatioResult IsNotStock(long id)
+        public OperationResult IsNotStock(long id)
         {
-            var operationResult = new OperatioResult();
+            var operationResult = new OperationResult();
             var product = _repository.Get(id);
             if (product == null)
                 return operationResult.Failed(ApplicationMessages.RecordNotFuond);
@@ -71,9 +71,9 @@ namespace ShopManagement.Application
             product.NotStock();
             return operationResult.Succedded();
         }
-        public OperatioResult IsStock(long id)
+        public OperationResult IsStock(long id)
         {
-            var operationResult = new OperatioResult();
+            var operationResult = new OperationResult();
             var product = _repository.Get(id);
             if (product == null)
                 return operationResult.Failed(ApplicationMessages.RecordNotFuond);

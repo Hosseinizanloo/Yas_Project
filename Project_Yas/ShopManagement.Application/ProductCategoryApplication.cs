@@ -19,9 +19,9 @@ namespace ShopManagement.Application
             _productCategoryRepository = productCategoryRepository;
         }
 
-        public OperatioResult Create(CreateProductCategory command)
+        public OperationResult Create(CreateProductCategory command)
         {
-            var operation = new OperatioResult();
+            var operation = new OperationResult();
             if (_productCategoryRepository.Exists(x => x.Name == command.Name))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
             var slug = command.Slug.Slugify();
@@ -32,9 +32,9 @@ namespace ShopManagement.Application
             return operation.Succedded();
         }
 
-        public OperatioResult Edit(EditProductCategory command)
+        public OperationResult Edit(EditProductCategory command)
         {
-            var operation = new OperatioResult();
+            var operation = new OperationResult();
             var productCategory = _productCategoryRepository.Get(command.Id);
             if (productCategory == null)
                 return operation.Failed(ApplicationMessages.RecordNotFuond);

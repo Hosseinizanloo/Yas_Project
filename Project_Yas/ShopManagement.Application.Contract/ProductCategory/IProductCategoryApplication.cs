@@ -11,8 +11,8 @@ namespace ShopManagement.Application.Contract.ProductCategory
     {
         // به این دلیل من این کلاس را ایجاد کردم که بتونم جواب خطایی برگردونم 
         //شما فرض کن به خطا برخوردی خب اگر وید باشد من نمیتونم خطایی برگردونم یا اگر درست هم ثبت شود باز نمیتونم پیغامی برگردونم 
-        OperatioResult Create(CreateProductCategory command);
-        OperatioResult Edit(EditProductCategory command);
+        OperationResult Create(CreateProductCategory command);
+        OperationResult Edit(EditProductCategory command);
         List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel);
         EditProductCategory GetDetilse(long id);
 

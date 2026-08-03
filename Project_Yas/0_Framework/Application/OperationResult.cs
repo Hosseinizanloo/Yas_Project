@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace _0_Framework.Applicatio
 {
-    public class OperatioResult
+    public class OperationResult
     {
         public bool IsSuccedded { get; set; } //باید بای دیفالت فالس باشه  زمانی که میخوایم اینیشیال کنیم ، فراخونی کنیم
         public string Message { get; set; }
 
-        public OperatioResult()
+        public OperationResult()
         {
             IsSuccedded = false;
         }
-        public OperatioResult Succedded(string message = "عملیات با موفقیت انجام شد")
+        public OperationResult Succedded(string message = "عملیات با موفقیت انجام شد")
         {
             IsSuccedded = true;
             Message = message;
             return this;// همین کلاس ریترن بشه بره 
         }
-        public OperatioResult Failed(string message)
+        public OperationResult Failed(string message)
         {
             IsSuccedded = false;
             Message = message;

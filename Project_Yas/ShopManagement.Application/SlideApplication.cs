@@ -20,9 +20,9 @@ namespace ShopManagement.Application
             _slideRepository = slideRepository;
         }
 
-        public OperatioResult Create(CreateSlide command)
+        public OperationResult Create(CreateSlide command)
         {
-            var operation = new OperatioResult();
+            var operation = new OperationResult();
             var slide = new Slide(command.Picture, command.PictureAlt, command.PictureTitle,
                 command.Heading, command.Title, command.Text, command.BtnText,command.Link);
             _slideRepository.Create(slide);
@@ -32,9 +32,9 @@ namespace ShopManagement.Application
 
         }
 
-        public OperatioResult Edit(EditSlide command)
+        public OperationResult Edit(EditSlide command)
         {
-            var operation = new OperatioResult();
+            var operation = new OperationResult();
             var slide = _slideRepository.Get(command.Id);
             if (slide == null)
                 return operation.Failed(ApplicationMessages.RecordNotFuond);
@@ -55,9 +55,9 @@ namespace ShopManagement.Application
             return _slideRepository.GetList();
         }
 
-        public OperatioResult Remove(long id)
+        public OperationResult Remove(long id)
         {
-            var operation = new OperatioResult();
+            var operation = new OperationResult();
             var slide = _slideRepository.Get(id);
             if (slide == null)
                 return operation.Failed(ApplicationMessages.RecordNotFuond);
@@ -66,9 +66,9 @@ namespace ShopManagement.Application
             return operation.Succedded();
         }
 
-        public OperatioResult Restore(long id)
+        public OperationResult Restore(long id)
         {
-            var operation = new OperatioResult();
+            var operation = new OperationResult();
             var slide = _slideRepository.Get(id);
             if (slide == null)
                 return operation.Failed(ApplicationMessages.RecordNotFuond);

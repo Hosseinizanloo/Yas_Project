@@ -9,10 +9,10 @@ namespace ShopManagement.Application.Contract.Slide
 {
     public interface ISlideApplication
     {
-        OperatioResult Create(CreateSlide command);
-        OperatioResult Edit(EditSlide command);
-        OperatioResult Remove(long id);
-        OperatioResult Restore(long id);
+        OperationResult Create(CreateSlide command);
+        OperationResult Edit(EditSlide command);
+        OperationResult Remove(long id);
+        OperationResult Restore(long id);
         EditSlide GetDetilse(long id);
         List<SlideViewModel> GetList();
     }
