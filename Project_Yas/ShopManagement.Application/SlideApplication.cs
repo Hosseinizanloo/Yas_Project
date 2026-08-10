@@ -37,7 +37,7 @@ namespace ShopManagement.Application
             var operation = new OperationResult();
             var slide = _slideRepository.Get(command.Id);
             if (slide == null)
-                return operation.Failed(ApplicationMessages.RecordNotFuond);
+                return operation.Failed(ApplicationMessages.RecordNotFound);
 
             slide.Edit(command.Picture, command.PictureAlt, command.PictureTitle,
                 command.Heading, command.Title, command.Text, command.BtnText,command.Link);
@@ -60,7 +60,7 @@ namespace ShopManagement.Application
             var operation = new OperationResult();
             var slide = _slideRepository.Get(id);
             if (slide == null)
-                return operation.Failed(ApplicationMessages.RecordNotFuond);
+                return operation.Failed(ApplicationMessages.RecordNotFound);
             slide.Remove();
             _slideRepository.SaveChanges();
             return operation.Succedded();
@@ -71,7 +71,7 @@ namespace ShopManagement.Application
             var operation = new OperationResult();
             var slide = _slideRepository.Get(id);
             if (slide == null)
-                return operation.Failed(ApplicationMessages.RecordNotFuond);
+                return operation.Failed(ApplicationMessages.RecordNotFound);
             slide.Restore();
             _slideRepository.SaveChanges();
             return operation.Succedded();

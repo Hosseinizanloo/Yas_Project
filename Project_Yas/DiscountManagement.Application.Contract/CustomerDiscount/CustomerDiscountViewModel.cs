@@ -11,6 +11,7 @@
         public DateTime EndDateGr { get; set; } // در چه تاریخی تمام شود 
         public string EndDate { get; set; } // در چه تاریخی تمام شود 
         public string Reason { get; set; }
+        public string CreationDate { get; set; }
     }
 
 

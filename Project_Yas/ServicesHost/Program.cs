@@ -1,3 +1,4 @@
+using DiscountManagement.Configuration;
 using ShopManagement.Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,7 @@ builder.Services.AddRazorPages();
 // Add services to the container.
 var connectionstrin = builder.Configuration.GetConnectionString("ProjectYasDB");
 ShopManagementBootstrapper.Configure(builder.Services, connectionstrin);
+DiscountManagementBootstrapper.Configure(builder.Services, connectionstrin);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -9,6 +9,6 @@ namespace _0_Framework.Application
     public class ApplicationMessages
     {
         public const string DuplicatedRecord = "امکان ثبت رکورد تکراری وجود ندارد لطفا مجدد تلاش کنید.";
-        public const string RecordNotFuond = "رکورد با اطلاعات وارد شده یافت نشد لطفا مجدد تلاش نمایید.";
+        public const string RecordNotFound = "رکورد با اطلاعات وارد شده یافت نشد لطفا مجدد تلاش نمایید.";
     }
 }

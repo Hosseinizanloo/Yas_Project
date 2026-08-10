@@ -37,7 +37,7 @@ namespace ShopManagement.Application
             var operation = new OperationResult();
             var productCategory = _productCategoryRepository.Get(command.Id);
             if (productCategory == null)
-                return operation.Failed(ApplicationMessages.RecordNotFuond);
+                return operation.Failed(ApplicationMessages.RecordNotFound);
 
             if(_productCategoryRepository.Exists(x=>x.Name == command.Name))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);

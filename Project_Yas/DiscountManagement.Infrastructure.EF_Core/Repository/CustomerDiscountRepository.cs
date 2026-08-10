@@ -1,4 +1,5 @@
-﻿using _0_Framework.Domain;
+﻿using _0_Framework.Application;
+using _0_Framework.Domain;
 using _0_Framework.Infrastructure;
 using DiscountManagement.Application.Contract.CustomerDiscount;
 using DiscountManagement.Domain.CustomerDiscountAgg;
@@ -22,7 +23,7 @@ namespace DiscountManagement.Infrastructure.EF_Core.Repository
             _shopContext = shopContext;
         }
 
-        public EditCustomerDiscount GetDetailse(long id)
+        public EditCustomerDiscount GetDetails(long id)
         {
             return _discountContext.CustomerDiscounts.Select(x => new EditCustomerDiscount
             {
@@ -47,7 +48,8 @@ namespace DiscountManagement.Infrastructure.EF_Core.Repository
                 EndDate = x.EndDate.ToString(),
                 StartDateGr = x.StartDate,
                 EndDateGr = x.EndDate,
-                Reason = x.Reason
+                Reason = x.Reason,
+                CreationDate = x.CreationDate.ToFarsi()
             });
             if (searchModel.ProductId > 0)
             {
@@ -56,13 +58,13 @@ namespace DiscountManagement.Infrastructure.EF_Core.Repository
             if (!string.IsNullOrWhiteSpace(searchModel.StartDate))
             {
                 var startDate = DateTime.Now;
-                query = query.Where(x => x.StartDateGr < startDate);
+                query = query.Where(x => x.StartDateGr > searchModel.StartDate.ToGeorgianDateTime());
             }
 
             if (!string.IsNullOrWhiteSpace(searchModel.EndDate))
             {
                 var endDate = DateTime.Now;
-                query = query.Where(x => x.EndDateGr < endDate);
+                query = query.Where(x => x.EndDateGr < searchModel.EndDate.ToGeorgianDateTime());
             }
             var discount = query.OrderByDescending(x => x.Id).ToList();
 

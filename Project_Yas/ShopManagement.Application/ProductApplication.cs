@@ -41,7 +41,7 @@ namespace ShopManagement.Application
             var operationResult = new OperationResult();
             var product = _repository.Get(command.Id);
             if (product == null)
-                return operationResult.Failed(ApplicationMessages.RecordNotFuond);
+                return operationResult.Failed(ApplicationMessages.RecordNotFound);
             if (_repository.Exists(x => x.Name == command.Name))
                 return operationResult.Failed(ApplicationMessages.DuplicatedRecord);
 
@@ -51,7 +51,7 @@ namespace ShopManagement.Application
             return operationResult.Succedded();
         }
 
-        public EditProduct GetDetailse(long id)
+        public EditProduct GetDetails(long id)
         {
             return _repository.GetDetailse(id);
         }
@@ -66,7 +66,7 @@ namespace ShopManagement.Application
             var operationResult = new OperationResult();
             var product = _repository.Get(id);
             if (product == null)
-                return operationResult.Failed(ApplicationMessages.RecordNotFuond);
+                return operationResult.Failed(ApplicationMessages.RecordNotFound);
 
             product.NotStock();
             return operationResult.Succedded();
@@ -76,7 +76,7 @@ namespace ShopManagement.Application
             var operationResult = new OperationResult();
             var product = _repository.Get(id);
             if (product == null)
-                return operationResult.Failed(ApplicationMessages.RecordNotFuond);
+                return operationResult.Failed(ApplicationMessages.RecordNotFound);
 
             product.InStock();
             return operationResult.Succedded();

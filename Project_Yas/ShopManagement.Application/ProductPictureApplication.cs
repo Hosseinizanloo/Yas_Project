@@ -30,7 +30,7 @@ namespace ShopManagement.Application
             var operation = new OperationResult();
             var productPicture = _repository.Get(command.Id);
             if (productPicture == null) 
-                return operation.Failed(ApplicationMessages.RecordNotFuond);
+                return operation.Failed(ApplicationMessages.RecordNotFound);
 
             if (_repository.Exists(x => x.Picture == command.Picture && x.ProductId != command.ProductId))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
@@ -50,7 +50,7 @@ namespace ShopManagement.Application
             var operation = new OperationResult();
             var productPicture = _repository.Get(id);
             if (productPicture == null)
-                return operation.Failed(ApplicationMessages.RecordNotFuond);
+                return operation.Failed(ApplicationMessages.RecordNotFound);
 
             productPicture.Removed();
             _repository.SaveChanges();
@@ -61,7 +61,7 @@ namespace ShopManagement.Application
             var operation = new OperationResult();
             var productPicture = _repository.Get(id);
             if (productPicture == null)
-                return operation.Failed(ApplicationMessages.RecordNotFuond);
+                return operation.Failed(ApplicationMessages.RecordNotFound);
 
             productPicture.Restore();
             _repository.SaveChanges();
