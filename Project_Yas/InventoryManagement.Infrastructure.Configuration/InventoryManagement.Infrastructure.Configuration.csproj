@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.10" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\0_Framework\0_Framework.csproj" />
+	  <ProjectReference Include="..\InventoryManagement.Application.Contract\InventoryManagement.Application.Contract.csproj" />
+	  <ProjectReference Include="..\InventoryManagement.Application\InventoryManagement.Application.csproj" />
+	  <ProjectReference Include="..\InventoryManagement.Domain\InventoryManagement.Domain.csproj" />
+	  <ProjectReference Include="..\InventoryManagement.Infrastructure.EF_Core\InventoryManagement.Infrastructure.EF_Core.csproj" />
+	</ItemGroup>
+
+</Project>
+
+

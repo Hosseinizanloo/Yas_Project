@@ -22,9 +22,14 @@ namespace InventoryManagement.Domain.InventoryAgg
             UnitPrice = unitPrice;
             InStock = false;//چون هیچ عملیتی براش انجام نشده من این را فالس میزارم
         }
-        
+        public void Edit(long productId, double unitPrice)
+        {
+            ProductId = productId;
+            UnitPrice = unitPrice;
+        }
+
         // اولین کاری که باید بکنیم اینه محاسبه مقدار فعلی  یعنی چه تعدادی در این انبار موجود است
-       public long CalculateInventoryCount()
+        public long CalculateInventoryCount()
         {
             //برای دریافت مقدار فعلی انبار باید به صورت زیر پیش رفت
             //ما باید همه ی عملیات هارا اول بگیریم
@@ -51,7 +56,7 @@ namespace InventoryManagement.Domain.InventoryAgg
             Operations.Add(operation);//اضافه کن به لیست بالا 
             InStock = currentCount > 0; // و درنهایت حساب کن ببین ایا با احتساب این اتفاق هنوز موجودی انباز منفی هست یا نه
         }
-
+        
         public void Reduce(long count, long operationId, string description, long orderId)
         {
             var currentCount = CalculateInventoryCount() - count;
@@ -63,7 +68,7 @@ namespace InventoryManagement.Domain.InventoryAgg
     }
     public class InventoryOperation
     {
-        public InventoryOperation(bool operation, long count, long operationId, long currentCount, 
+        public InventoryOperation(bool operation, long count, long operationId, long currentCount,
             string description, long orderId, long inventoryId)
         {
             Operation = operation;
@@ -73,6 +78,9 @@ namespace InventoryManagement.Domain.InventoryAgg
             Description = description;
             OrderId = orderId;
             InventoryId = inventoryId;
+        }
+        protected InventoryOperation()
+        {
         }
 
         public long Id { get; private set; }
