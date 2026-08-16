@@ -14,6 +14,7 @@ namespace InventoryManagement.Domain.InventoryAgg
         EditInventory Getdetails(long id);
         Inventory GetBy(long ProductId);// از طریق ایدی محصول اون انبار را به من بده
         List<InventoryViewModel> Search(InventorySearchModel searchModel);
+        List<InventoryOperationViewModel> GetOperationLog(long inventoryId);
 
     }
 }

@@ -12,12 +12,12 @@ namespace InventoryManagement.Application.Contract.Inventory
         OperationResult Create(CreateInventory command);
         OperationResult Edit(EditInventory command);
         OperationResult Increase(IncreaseInventory command);
-        OperationResult Reduce(DecreaseInventory command);
+        OperationResult Reduce(ReduceInventory command);
 
         //وقتی میخواد خرید بشه ممکنه در سبد خرید چندین کالا وجود داشته باشد
-        OperationResult Decrease(List<DecreaseInventory> command);
+        OperationResult Reduce(List<ReduceInventory> command);
         EditInventory GetDetails(long id);
         List<InventoryViewModel>Search(InventorySearchModel searchModel);
-
+        List<InventoryOperationViewModel> GetOperationLog(long inventoryId);
     }
 }

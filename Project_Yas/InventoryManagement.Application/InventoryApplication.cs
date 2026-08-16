@@ -28,7 +28,7 @@ namespace InventoryManagement.Application
 
         }
 
-        public OperationResult Decrease(List<DecreaseInventory> command)
+        public OperationResult Reduce(List<ReduceInventory> command)
         {
             var operation = new OperationResult();
             const long operationId = 1;
@@ -45,10 +45,10 @@ namespace InventoryManagement.Application
         public OperationResult Edit(EditInventory command)
         {
             var operation = new OperationResult();
-            var inventory = _inventoryRepository.Get(command.ProductId);
+            var inventory = _inventoryRepository.Get(command.Id);
             if (inventory == null)
                 return operation.Failed(ApplicationMessages.RecordNotFound);
-            if (_inventoryRepository.Exists(x => x.ProductId == command.ProductId))
+            if (_inventoryRepository.Exists(x => x.ProductId == command.ProductId && x.Id != command.Id))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
             inventory.Edit(command.ProductId, command.UnitPrice);
             _inventoryRepository.SaveChanges();
@@ -58,6 +58,11 @@ namespace InventoryManagement.Application
         public EditInventory GetDetails(long id)
         {
             return _inventoryRepository.Getdetails(id);
+        }
+
+        public List<InventoryOperationViewModel> GetOperationLog(long inventoryId)
+        {
+            return _inventoryRepository.GetOperationLog(inventoryId);
         }
 
         public OperationResult Increase(IncreaseInventory command)
@@ -74,15 +79,15 @@ namespace InventoryManagement.Application
 
         }
 
-        public OperationResult Reduce(DecreaseInventory command)
+        public OperationResult Reduce(ReduceInventory command)
         {
             var operation = new OperationResult();
             var inventory = _inventoryRepository.Get(command.InventoryId);
             if (inventory == null)
                 return operation.Failed(ApplicationMessages.RecordNotFound);
 
-            const long operationId = 1;
-            inventory.Reduce(command.Count, operationId, command.Description, 0);
+            var operatorId = 1;
+            inventory.Reduce(command.Count, operatorId, command.Description, 0);
             _inventoryRepository.SaveChanges();
             return operation.Succedded();
         }

@@ -11,11 +11,10 @@ namespace ShopManagement.Domain.ProductAgg
 {
     public class Product : EntityBase
     {
-        public Product(string name, string code, double unitPrice, string shortDescription, string description, string picture, string pictureAlt, string pictureTitle, string slug, string keywords, string metaDescription, long categoryId)
+        public Product(string name, string code, string shortDescription, string description, string picture, string pictureAlt, string pictureTitle, string slug, string keywords, string metaDescription, long categoryId)
         {
             Name = name;
             Code = code;
-            UnitPrice = unitPrice;
             ShortDescription = shortDescription;
             Description = description;
             Picture = picture;
@@ -26,11 +25,10 @@ namespace ShopManagement.Domain.ProductAgg
             MetaDescription = metaDescription;
             CategoryId = categoryId;
         }
-        public void Edit(string name, string code, double unitPrice, string shortDescription, string description, string picture, string pictureAlt, string pictureTitle, string slug, string keywords, string metaDescription, long categoryId)
+        public void Edit(string name, string code, string shortDescription, string description, string picture, string pictureAlt, string pictureTitle, string slug, string keywords, string metaDescription, long categoryId)
         {
             Name = name;
             Code = code;
-            UnitPrice = unitPrice;
             ShortDescription = shortDescription;
             Description = description;
             Picture = picture;
@@ -40,20 +38,19 @@ namespace ShopManagement.Domain.ProductAgg
             Keywords = keywords;
             MetaDescription = metaDescription;
             CategoryId = categoryId;
-            IsInStock = true;
+            //IsInStock = true;
         }
-        public void InStock() // این باید بگه در انبار موجود است 
-        {
-            IsInStock = true;
-        }
-        public void NotStock() // این باید بگه در انبار موجود نیست 
-        {
-            IsInStock = false;
-        }
+        //public void InStock() // این باید بگه در انبار موجود است 
+        //{
+        //    IsInStock = true;
+        //}
+        //public void NotStock() // این باید بگه در انبار موجود نیست 
+        //{
+        //    IsInStock = false;
+        //}
         public string Name { get; private set; }
         public string Code { get; private set; }
-        public double UnitPrice { get; private set; }
-        public bool IsInStock { get; private set; }
+        //public bool IsInStock { get; private set; }
         public string ShortDescription { get; private set; }
         public string Description { get; private set; }
         public string Picture { get; private set; }

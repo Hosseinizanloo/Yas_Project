@@ -7,8 +7,8 @@ namespace ShopManagement.Application.Contract.Product
     {
         OperationResult Create(CreateProduct command);
         OperationResult Edit(EditProduct command);
-        OperationResult IsStock(long id); // چه محصولی فعال است
-        OperationResult IsNotStock(long id);// چه محصولی غیر فعال است
+        //OperationResult IsStock(long id); // چه محصولی فعال است
+        //OperationResult IsNotStock(long id);// چه محصولی غیر فعال است
         EditProduct GetDetails(long id);
         List<ProductViewModel> Search(ProductSearchModel searchModel);
 

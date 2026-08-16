@@ -60,7 +60,7 @@ namespace InventoryManagement.Domain.InventoryAgg
         public void Reduce(long count, long operationId, string description, long orderId)
         {
             var currentCount = CalculateInventoryCount() - count;
-            var operation = new InventoryOperation(true, count, operationId, currentCount, description, orderId, Id);
+            var operation = new InventoryOperation(false, count, operationId, currentCount, description, orderId, Id);
             Operations.Add(operation);
             InStock = currentCount > 0;
 
@@ -78,6 +78,7 @@ namespace InventoryManagement.Domain.InventoryAgg
             Description = description;
             OrderId = orderId;
             InventoryId = inventoryId;
+            OperationDate = DateTime.Now;
         }
         protected InventoryOperation()
         {

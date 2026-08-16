@@ -1,4 +1,5 @@
-﻿using _0_Framework.Infrastructure;
+﻿using _0_Framework.Application;
+using _0_Framework.Infrastructure;
 using InventoryManagement.Application.Contract.Inventory;
 using InventoryManagement.Domain.InventoryAgg;
 using ShopManagement.Infrastructure.EF_Core;
@@ -36,6 +37,23 @@ namespace InventoryManagement.Infrastructure.EF_Core.Repository
             }).FirstOrDefault(x => x.Id == id);
         }
 
+        public List<InventoryOperationViewModel> GetOperationLog(long inventoryId)
+        {
+            var inventory = _context.Inventories.FirstOrDefault(x => x.Id == inventoryId);
+            return inventory.Operations.Select(x => new InventoryOperationViewModel
+            {
+                Id = x.Id,
+                Count = x.Count,
+                CurrentCount = x.CurrentCount,
+                Description = x.Description,
+                Operation = x.Operation,
+                OperationDate = x.OperationDate.ToFarsi(),
+                Operator = "مدیر سیستم",
+                OperatorId = x.OperationId,
+                OrderId = x.OrderId
+            }).OrderByDescending(x => x.Id).ToList();
+        }
+
         public List<InventoryViewModel> Search(InventorySearchModel searchModel)
         {
             var product = _shopContext.Products.Select(x => new { x.Id, x.Name });
@@ -45,6 +63,7 @@ namespace InventoryManagement.Infrastructure.EF_Core.Repository
                 ProductId = x.ProductId,
                 UnitPrice = x.UnitPrice,
                 InStock = x.InStock,
+                CreationDate = x.CreationDate.ToFarsi(),
                 CurrentCount = x.CalculateInventoryCount()
             });
             if (searchModel.ProductId > 0)
@@ -57,7 +76,7 @@ namespace InventoryManagement.Infrastructure.EF_Core.Repository
 
             inventory.ForEach(item => 
             {
-                item.Product = product.FirstOrDefault(x => x.Id == item.Id)?.Name;
+                item.Product = product.FirstOrDefault(x => x.Id == item.ProductId)?.Name;
             });
             return inventory;
         }

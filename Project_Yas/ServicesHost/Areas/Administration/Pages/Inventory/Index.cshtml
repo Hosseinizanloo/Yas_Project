@@ -66,6 +66,7 @@
                                     <th>محصول</th>
                                     <th>قیمت</th>
                                     <th>موجودی انبار</th>
+                                    <th>تاریخ ایجاد</th>
                                     <th>عملیات</th>
                                 </tr>
                             </thead>
@@ -78,11 +79,22 @@
                                         <td>@item.Id</td>
                                         <td>@item.Product</td>
                                         <td>@item.UnitPrice</td>
+                                        <td>@item.CreationDate</td>
                                         <td>@item.CurrentCount</td>
                                         <td>
                                             <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Page("./Index", "Edit" , new {id = item.Id})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
+                                            <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Page("./Index", "Increase" , new {id = item.Id})">
+                                                <i class="fa fa-edit"></i> افزایش
+                                            </a>
+                                            <a class="btn btn-danger pull-right m-rl-5" href="#showmodal=@Url.Page("./Index", "Reduce" , new {id = item.Id})">
+                                                <i class="fa fa-minus"></i> کاهش
+                                            </a>
+                                            <a class="btn btn-primary waves-effect waves-light m-b-5"
+                                               href="#showmodal=@Url.Page("./Index", "Log", new {id = item.Id})"
+                                               onclick="$('.modal-dialog').css('width', '60%')">
+                                                <i class="fa fa-recycle"></i> مشاهده گردنش انبار
                                         </td>
                                     </tr>
                                 }

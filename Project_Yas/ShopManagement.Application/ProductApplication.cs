@@ -29,7 +29,7 @@ namespace ShopManagement.Application
 
 
             var slug = command.Slug.Slugify();
-            var product = new Product(command.Name, command.Code, command.UnitPrice, command.ShortDescription, command.Description, command.Picture, command.PictureAlt, command.PictureTitle, slug, command.Keywords, command.MetaDescription, command.CategoryId);
+            var product = new Product(command.Name, command.Code, command.ShortDescription, command.Description, command.Picture, command.PictureAlt, command.PictureTitle, slug, command.Keywords, command.MetaDescription, command.CategoryId);
             _repository.Create(product);
             _repository.SaveChanges();
             return operationResult.Succedded();
@@ -46,7 +46,7 @@ namespace ShopManagement.Application
                 return operationResult.Failed(ApplicationMessages.DuplicatedRecord);
 
             var slug = command.Slug.Slugify();
-            product.Edit(command.Name, command.Code, command.UnitPrice, command.ShortDescription, command.Description, command.Picture, command.PictureAlt, command.PictureTitle, slug, command.Keywords, command.MetaDescription, command.CategoryId); ;
+            product.Edit(command.Name, command.Code, command.ShortDescription, command.Description, command.Picture, command.PictureAlt, command.PictureTitle, slug, command.Keywords, command.MetaDescription, command.CategoryId); ;
             _repository.SaveChanges();
             return operationResult.Succedded();
         }
@@ -61,7 +61,7 @@ namespace ShopManagement.Application
             return _repository.GetProduct();
         }
 
-        public OperationResult IsNotStock(long id)
+     /*   public OperationResult IsNotStock(long id)
         {
             var operationResult = new OperationResult();
             var product = _repository.Get(id);
@@ -80,7 +80,7 @@ namespace ShopManagement.Application
 
             product.InStock();
             return operationResult.Succedded();
-        }
+        }*/
 
         public List<ProductViewModel> Search(ProductSearchModel searchModel)
         {

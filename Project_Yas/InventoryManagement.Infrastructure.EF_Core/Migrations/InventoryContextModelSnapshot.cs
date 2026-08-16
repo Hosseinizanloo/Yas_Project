@@ -77,7 +77,7 @@ namespace InventoryManagement.Infrastructure.EF_Core.Migrations
                             b1.Property<DateTime>("OperationDate")
                                 .HasColumnType("datetime2");
 
-                            b1.Property<long>("OperationId")
+                            b1.Property<long>("OperatorId")
                                 .HasColumnType("bigint");
 
                             b1.Property<long>("OrderId")
