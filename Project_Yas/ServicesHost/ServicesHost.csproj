@@ -8,9 +8,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>		</PackageReference>
 	</ItemGroup>
 	
 	
@@ -92,6 +91,7 @@
   <ItemGroup>
     <Folder Include="Areas\Administration\Pages\Discounts\ColleagueDiscount\" />
     <Folder Include="Areas\Administration\Pages\BlogManagement\" />
+    <Folder Include="wwwroot\ProductPictrues\" />
   </ItemGroup>
 
 </Project>
