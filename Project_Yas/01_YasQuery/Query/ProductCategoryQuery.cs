@@ -1,5 +1,7 @@
-﻿using _01_YasQuery.Contract.Product;
+﻿using _0_Framework.Application;
+using _01_YasQuery.Contract.Product;
 using _01_YasQuery.Contract.ProductCategory;
+using DiscountManagement.Infrastructure.EF_Core;
 using InventoryManagement.Infrastructure.EF_Core;
 using Microsoft.EntityFrameworkCore;
 using ShopManagement.Domain.ProductAgg;
@@ -14,12 +16,14 @@ namespace _01_YasQuery.Query
 {
     public class ProductCategoryQuery : IProductCategoryQuery
     {
-        private readonly ShopContext _shopContext;
-        private readonly InventoryContext _inventoryContext;
-        public ProductCategoryQuery(ShopContext shopContext, InventoryContext inventoryContext)
+        private readonly ShopContext _shopContext;// برای دریافت اطلاعات محصول و دسته بندی
+        private readonly InventoryContext _inventoryContext;// برای دریافت قیمت 
+        private readonly DiscountContext _discountContext;
+        public ProductCategoryQuery(ShopContext shopContext, InventoryContext inventoryContext, DiscountContext discountContext)
         {
             _shopContext = shopContext;
             _inventoryContext = inventoryContext;
+            _discountContext = discountContext;
         }
 
         public List<ProductCategoryQueryModel> GetProductCategories()
@@ -38,7 +42,13 @@ namespace _01_YasQuery.Query
         public List<ProductCategoryQueryModel> GetProductCategoriesWhithProducts()
         {
             //اول باید پروداکت ها را بخوانیم و پروداکت کتگوری ها را هم بخوانیم  
-            var inventory = _inventoryContext
+            var inventory = _inventoryContext.Inventories.Select
+                (x => new { x.UnitPrice , x.ProductId }).ToList();
+
+            var discount = _discountContext.CustomerDiscounts.
+                Where(x => x.StartDate < DateTime.Now && x.EndDate > DateTime.Now)
+                .Select(x => new { x.DiscountRate, x.ProductId }).ToList();
+
             var categories = _shopContext.ProductCategories.Include(x=>x.Products)
                 //.ThenInclude(x=>x.Category)
                 .Select(x => new ProductCategoryQueryModel
@@ -52,6 +62,24 @@ namespace _01_YasQuery.Query
             {
                 foreach (var product in categoriy.Products)
                 {
+                    var inventories = inventory.FirstOrDefault(x => x.ProductId == product.Id);
+                    if (inventories != null)
+                    {
+                        var price = inventories.UnitPrice;
+                        product.Price = price.ToMoney();
+                        var discounts = discount.FirstOrDefault(x => x.ProductId == product.Id);
+
+                        if (discounts != null)
+                        {
+                            int discountRate = discounts.DiscountRate;
+
+                            product.DiscountRate = discountRate;
+                            product.HasDiscount = discountRate > 0;
+
+                            var discountAmount = Math.Round(price * discountRate / 100);// مقدار تخفیف
+                            product.PriceWithDiscount = (price - discountAmount).ToMoney();
+                        }
+                    }
                     
                 }
             }
@@ -59,7 +87,7 @@ namespace _01_YasQuery.Query
             return categories;
         }
 
-        private static List<ProductQueryModel> MapProducts(List<Product> products)
+        private static List<Contract.Product.ProductQuery> MapProducts(List<Product> products)
         {
             //نکتهی بسیار محم متد های استاتیک سطح کلاس را نمیبینند
           

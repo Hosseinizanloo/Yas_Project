@@ -19,6 +19,7 @@
 		</PackageReference>
 	</ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DiscountManagement.Infrastructure.EF_Core\DiscountManagement.Infrastructure.EF_Core.csproj" />
     <ProjectReference Include="..\InventoryManagement.Infrastructure.EF_Core\InventoryManagement.Infrastructure.EF_Core.csproj" />
     <ProjectReference Include="..\ShopManagement.Infrastructure.EF_Core\ShopManagement.Infrastructure.EF_Core.csproj" />
   </ItemGroup>
