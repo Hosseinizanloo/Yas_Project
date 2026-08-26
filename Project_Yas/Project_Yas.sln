@@ -63,7 +63,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Infrast
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Application", "InventoryManagement.Application\InventoryManagement.Application.csproj", "{21F1EB9A-B6CC-4675-9FD6-B5DABD26D921}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesHost2", "ServicesHost2\ServicesHost2.csproj", "{A39B66A0-EA5C-4716-9BC2-6C406476E6A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServicesHost2", "ServicesHost2\ServicesHost2.csproj", "{A39B66A0-EA5C-4716-9BC2-6C406476E6A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

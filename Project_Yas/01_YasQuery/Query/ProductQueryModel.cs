@@ -36,7 +36,7 @@ namespace _01_YasQuery.Query
                     PictureAlt = c.PictureAlt,
                     PictureTitle = c.PictureTitle,
                     Slug = c.Slug
-                }).ToList();
+                }).OrderByDescending(x=>x.Id).Take(6).ToList();
 
             foreach (var product in products)
             {

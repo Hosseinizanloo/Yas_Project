@@ -8,7 +8,9 @@ namespace _01_YasQuery.Contract.ProductCategory
 {
     public interface IProductCategoryQuery
     {
+        ProductCategoryQueryModel GetProductCategoeyWhitProductsBy(string slug);
         List<ProductCategoryQueryModel> GetProductCategories();
         List<ProductCategoryQueryModel> GetProductCategoriesWhithProducts();
+        
     }
 }

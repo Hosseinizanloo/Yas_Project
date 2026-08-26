@@ -1,4 +1,5 @@
-﻿using _01_YasQuery.Contract.ProductCategory;
+﻿using _01_YasQuery.Contract.Product;
+using _01_YasQuery.Contract.ProductCategory;
 using _01_YasQuery.Contract.Slide;
 using _01_YasQuery.Query;
 using Microsoft.EntityFrameworkCore;
@@ -39,6 +40,7 @@ namespace ShopManagement.Infrastructure.Configuration
 
 
             services.AddTransient<IProductCategoryQuery, ProductCategoryQuery>();
+            services.AddTransient< IProductQueryModel, ProductQueryModel>();
 
 
             services.AddDbContext<ShopContext>(x => x.UseSqlServer(connectionString));
