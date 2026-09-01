@@ -109,7 +109,7 @@ namespace _01_YasQuery.Query
             var inventory = _inventoryContext.Inventories.Select
                 (x => new { x.UnitPrice, x.ProductId }).ToList();
 
-            var discount = _discountContext.CustomerDiscounts.
+            var discounts = _discountContext.CustomerDiscounts.
                 Where(x => x.StartDate < DateTime.Now && x.EndDate > DateTime.Now)
                 .Select(x => new { x.DiscountRate, x.ProductId , x.EndDate }).ToList();
 
@@ -134,14 +134,14 @@ namespace _01_YasQuery.Query
                 {
                     var price = inventories.UnitPrice;
                     product.Price = price.ToMoney();
-                    var discounts = discount.FirstOrDefault(x => x.ProductId == product.Id);
+                    var discount = discounts.FirstOrDefault(x => x.ProductId == product.Id);
 
                     if (discounts != null)
                     {
-                        int discountRate = discounts.DiscountRate;
+                        int discountRate = discount.DiscountRate;
 
                         product.DiscountRate = discountRate;
-                        ////product.DiscountExpireDate = discount.EndDate.ToFarsi();
+                        product.DiscountExpireDate = discount.EndDate.ToFarsi();
                         product.HasDiscount = discountRate > 0;
 
                         var discountAmount = Math.Round(price * discountRate / 100);// مقدار تخفیف

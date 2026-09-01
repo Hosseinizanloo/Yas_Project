@@ -44,7 +44,7 @@
                                     <div class="shop-header__right">
 
                                         <div class="single-select-block d-inline-block">
-                                            <span class="select-title">Show:</span>
+                                            <span class="select-title">نمایش:</span>
                                             <select>
                                                 <option value="1">10</option>
                                                 <option value="2">20</option>
@@ -131,7 +131,7 @@
                                                         </p>
                                                         @if (item.HasDiscount)
                                                         {
-                                                         <div class="product-countdown" data-countdown="2020/06/10"></div>
+                                                            <div class="product-countdown" data-countdown="@item.DiscountExpireDate"></div>
                                                         }
                                                     </div>
                                                 </div>
