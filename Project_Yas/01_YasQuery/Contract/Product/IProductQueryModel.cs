@@ -9,5 +9,6 @@ namespace _01_YasQuery.Contract.Product
     public interface IProductQueryModel
     {
         List<ProductQuery> GetLatestArrivals();
+        List<ProductQuery> Search(string value);
     }
 }

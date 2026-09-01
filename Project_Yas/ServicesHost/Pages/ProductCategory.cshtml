@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id}"
 @model ProductCategoryModel
 @{
     ViewData["Title"] = "دسته بندی محصولات";
@@ -88,18 +88,8 @@
                                                         <a href="single-product.html">
                                                             <img src="/ProductPictrues/@item.Picture" class="img-fluid"
                                                                  alt="@item.PictureAlt" title="@item.PictureTitle">
-                                                           
-                                                        </a>
+                                                                                                                   </a>
 
-                                                        <div class="hover-icons">
-                                                            <a href="javascript:void(0)">
-                                                                <i class="ion-bag"></i>
-                                                            </a>
-                                                            <a href="javascript:void(0)" data-toggle="modal"
-                                                               data-target="#quick-view-modal-container">
-                                                                <i class="ion-android-open"></i>
-                                                            </a>
-                                                        </div>
                                                     </div>
                                                     <div class="single-grid-product__content">
                                                         <div class="single-grid-product__category-rating">
